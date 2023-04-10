@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>个人博客</title>
+  
+  <subtitle>至性至善，大道天成</subtitle>
+  <link href="http://laneng.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://laneng.github.io/"/>
+  <updated>2023-04-10T02:31:10.842Z</updated>
+  <id>http://laneng.github.io/</id>
+  
+  <author>
+    <name>lxd</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>第一篇博客</title>
+    <link href="http://laneng.github.io/2023/04/10/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://laneng.github.io/2023/04/10/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</id>
+    <published>2023-04-10T02:26:12.000Z</published>
+    <updated>2023-04-10T02:31:10.842Z</updated>
+    
+    <content type="html"><![CDATA[<p>测试博客搭建</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;测试博客搭建&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
