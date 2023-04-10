@@ -6,7 +6,7 @@
   <link href="http://laneng.github.io/atom.xml" rel="self"/>
   
   <link href="http://laneng.github.io/"/>
-  <updated>2023-04-10T02:31:10.842Z</updated>
+  <updated>2023-04-10T11:19:09.325Z</updated>
   <id>http://laneng.github.io/</id>
   
   <author>
@@ -17,19 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>player</title>
+    <link href="http://laneng.github.io/2023/04/10/player/"/>
+    <id>http://laneng.github.io/2023/04/10/player/</id>
+    <published>2023-04-10T11:19:09.000Z</published>
+    <updated>2023-04-10T11:19:09.325Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>第一篇博客</title>
     <link href="http://laneng.github.io/2023/04/10/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
     <id>http://laneng.github.io/2023/04/10/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</id>
     <published>2023-04-10T02:26:12.000Z</published>
     <updated>2023-04-10T02:31:10.842Z</updated>
     
-    <content type="html"><![CDATA[<p>测试博客搭建</p>]]></content>
-    
     
       
       
-    <summary type="html">&lt;p&gt;测试博客搭建&lt;/p&gt;
-</summary>
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
       
     
     
