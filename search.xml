@@ -1,6 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Java学习路线整理</title>
+    <url>/2023/04/12/Mysql%20%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="Mysql-面试题"><a href="#Mysql-面试题" class="headerlink" title="Mysql 面试题"></a>Mysql 面试题</h1><table>
+<thead>
+<tr>
+<th>InnoDb</th>
+<th align="left">MySAM</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>事务: 支持,强调的是保持数据一致</td>
+<td align="left">不支持,强调的是性能,查询速度比InnoDB快</td>
+</tr>
+<tr>
+<td>外键: 支持</td>
+<td align="left">不支持</td>
+</tr>
+<tr>
+<td>索引: 使用聚集索引,索引文件和数据文件绑定</td>
+<td align="left">使用非聚集索引,索引文件和数据文件分开存储,索引中保存的是数据文件的指针</td>
+</tr>
+<tr>
+<td>锁  支持表级锁、行级锁；行级锁粒度小，处理并发的能力更强</td>
+<td align="left">支持表级锁，用户在执行insert&#x2F;update、select、delete时都会给表自动加锁，效率低</td>
+</tr>
+<tr>
+<td>主键：表必须有唯一索引</td>
+<td align="left">没有要求</td>
+</tr>
+<tr>
+<td>存储文件： 在操作系统中的存储文件  .frm : 表定义文件  .ibd： 数据文件</td>
+<td align="left">在操作系统中的存储文件： .frm : 表定义文件 .myd ：数据文件 .myi ： 索引文件</td>
+</tr>
+</tbody></table>
+<p>在阐述完两种存储引擎的区别之后，在根据两者的特定，枚举一些使用场景：</p>
+<ol>
+<li>MyISAM 对于不支持事务并且存在大量 SELECT 的读场景比较合适；</li>
+<li>如果业务代码中要支持事务，必须选择 InnoDB 存储引擎；</li>
+<li>如果业务代码中要支持外键，必须选择 InnoDB 存储引擎；</li>
+</ol>
+]]></content>
+      <categories>
+        <category>面试宝典</category>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java学习路线整理</title>
+    <url>/2023/04/12/%E4%BB%8A%E6%97%A5%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="面向多CPU的最新垃圾回收器-G1"><a href="#面向多CPU的最新垃圾回收器-G1" class="headerlink" title="面向多CPU的最新垃圾回收器-G1"></a>面向多CPU的最新垃圾回收器-G1</h1><h2 id="G1最大的特征"><a href="#G1最大的特征" class="headerlink" title="G1最大的特征"></a>G1最大的特征</h2><p>将大空间分成若干区域,能实现一些更复杂,更精细的的功能</p>
+<h2 id="划分成小区域的好处"><a href="#划分成小区域的好处" class="headerlink" title="划分成小区域的好处"></a>划分成小区域的好处</h2><ol>
+<li>垃圾回收线程和工作线程能够并行工作,避免”SWT”</li>
+<li>不同区域可同时回收,并发性更高,更适合多核服务器</li>
+<li>可以先回收一部分区域,回收更快</li>
+<li>可以简历停顿预测模型,用户可以设定垃圾回收最长时间</li>
+</ol>
+<h2 id="Region划分原理"><a href="#Region划分原理" class="headerlink" title="Region划分原理"></a>Region划分原理</h2><ol>
+<li>数量方面,region默认总个数为2048个</li>
+<li>大小方面,默认是1MB,可以通过参数将其修改为2,4,8,16,32MB这几种</li>
+</ol>
+<h1 id="第一章总结思考"><a href="#第一章总结思考" class="headerlink" title="第一章总结思考"></a>第一章总结思考</h1><ol>
+<li>每个区域该多大?总数为多少比较好</li>
+<li>新生&#x2F;老年代区域比例该如何才能最优?</li>
+<li>大对象该如何管理</li>
+<li>处理YGC,还有几种类型,如何工作?</li>
+</ol>
+]]></content>
+      <categories>
+        <category>JVM垃圾回收机制</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第一篇博客</title>
     <url>/2023/04/10/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>测试博客搭建</p>
