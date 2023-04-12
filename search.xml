@@ -1610,4 +1610,141 @@
         <tag>ssm</tag>
       </tags>
   </entry>
+  <entry>
+    <title>日志</title>
+    <url>/2019/04/24/Log/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>[TOC]</p>
+<h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><hr>
+<h4 id="1-1-日志介绍"><a href="#1-1-日志介绍" class="headerlink" title="1.1 日志介绍"></a>1.1 日志介绍</h4><blockquote>
+<p>用于记录系统中发生的各种事件。记录的位置常见的有 ：控制台、磁盘文件等</p>
+</blockquote>
+<h4 id="1-2-日志级别"><a href="#1-2-日志级别" class="headerlink" title="1.2 日志级别"></a>1.2 日志级别</h4><blockquote>
+<p>日志级别从低到高：</p>
+<p>TRACE、DEBUG、INFO、WARN、ERROR、FATAL</p>
+</blockquote>
+<h4 id="1-3-日志作用"><a href="#1-3-日志作用" class="headerlink" title="1.3 日志作用"></a>1.3 日志作用</h4><blockquote>
+<ul>
+<li>通过日志观察、分析项目的运行情况 (项目维护)</li>
+<li>通过日志分析用户的使用情况 (大数据分析)</li>
+<li>…</li>
+</ul>
+</blockquote>
+<h3 id="二、解决方案1"><a href="#二、解决方案1" class="headerlink" title="二、解决方案1"></a>二、解决方案1</h3><hr>
+<h4 id="2-1-Log4j-Commons-Logging"><a href="#2-1-Log4j-Commons-Logging" class="headerlink" title="2.1 Log4j+Commons-Logging"></a>2.1 Log4j+Commons-Logging</h4><h5 id="2-1-1-导入依赖"><a href="#2-1-1-导入依赖" class="headerlink" title="2.1.1 导入依赖"></a>2.1.1 导入依赖</h5><blockquote>
+<p>项目中添加 Log4j和Commons-Logging的依赖</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/log4j/log4j --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/commons-logging/commons-logging --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-1-2-基本使用"><a href="#2-1-2-基本使用" class="headerlink" title="2.1.2 基本使用"></a>2.1.2 基本使用</h5><blockquote>
+<p>基本API</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.commons.logging.Log;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.logging.LogFactory;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloLog</span> &#123;</span><br><span class="line">	<span class="comment">// 需要输出日志的类，可以创建一个log属性</span></span><br><span class="line">    <span class="type">Log</span> <span class="variable">log</span> <span class="operator">=</span> LogFactory.getLog(HelloLog.class);</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test1</span><span class="params">()</span>&#123;</span><br><span class="line">        log.trace(<span class="string">&quot;hello trace&quot;</span>);</span><br><span class="line">        log.debug(<span class="string">&quot;hello debug&quot;</span>);</span><br><span class="line">        log.info(<span class="string">&quot;hello info&quot;</span>);</span><br><span class="line">        log.warn(<span class="string">&quot;hello warn&quot;</span>);</span><br><span class="line">        log.error(<span class="string">&quot;hello error&quot;</span>);</span><br><span class="line">        log.fatal(<span class="string">&quot;hello fatal&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-1-3-配置信息"><a href="#2-1-3-配置信息" class="headerlink" title="2.1.3 配置信息"></a>2.1.3 配置信息</h5><blockquote>
+<p>定义配置文件 <a href="">log4j.xml</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>占位符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%p</td>
+<td>输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL</td>
+</tr>
+<tr>
+<td>%r</td>
+<td>输出自应用启动到输出该log信息耗费的毫秒数</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>输出所在类的全名</td>
+</tr>
+<tr>
+<td>%t</td>
+<td>输出产生该日志事件的线程名</td>
+</tr>
+<tr>
+<td>%n</td>
+<td>输出一个回车换行符</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d{yyyy-MM-dd  HH:mm:ss,SSS}，输出类似：2002-10-18  22:10:28,921</td>
+</tr>
+<tr>
+<td>%l</td>
+<td>输出日志事件的发生位置，包括类名、发生的线程，以及在代码中的行数。举例：Testlo4.main(TestLog4.java:10)</td>
+</tr>
+</tbody></table>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span>  encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">log4j</span>:configuration <span class="keyword">PUBLIC</span> <span class="string">&quot;-//LOGGER&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://org/apache/log4j/xml/log4j.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">log4j:configuration</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- org.apache.log4j.ConsoleAppender 输出到控制台 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;myConsole&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.log4j.ConsoleAppender&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--输出格式--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">layout</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.log4j.PatternLayout&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;ConversionPattern&quot;</span></span></span><br><span class="line"><span class="tag">                   <span class="attr">value</span>=<span class="string">&quot;%-d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125; [%c]-[%p] %m%n&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 输出到文件 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;myFile1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.log4j.RollingFileAppender&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;File&quot;</span> <span class="attr">value</span>=<span class="string">&quot;d:/log/hello.log&quot;</span>/&gt;</span><span class="comment">&lt;!--文件位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;Append&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span><span class="comment">&lt;!--是否选择追加--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;MaxFileSize&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1kb&quot;</span>/&gt;</span><span class="comment">&lt;!--文件最大字节数--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;MaxBackupIndex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span> /&gt;</span><span class="comment">&lt;!--新文件数量--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">layout</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.log4j.PatternLayout&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;ConversionPattern&quot;</span> <span class="attr">value</span>=<span class="string">&quot;%-d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125; [%c]-[%p] %m%n&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 输出到文件 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;myFile2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.log4j.DailyRollingFileAppender&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;File&quot;</span> <span class="attr">value</span>=<span class="string">&quot;d:/log/hello2.log&quot;</span>/&gt;</span><span class="comment">&lt;!--文件位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;Append&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span><span class="comment">&lt;!--是否选择追加--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">layout</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.log4j.PatternLayout&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;ConversionPattern&quot;</span></span></span><br><span class="line"><span class="tag">                   <span class="attr">value</span>=<span class="string">&quot;%-d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125; [%c]-[%p] %m%n&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 根logger的设置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">root</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--优先级设置，all &lt; trace &lt; debug &lt; info &lt; warn &lt; error &lt; fatal &lt; off --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">priority</span> <span class="attr">value</span>=<span class="string">&quot;all&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;myConsole&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;myFile&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;myFile2&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">log4j:configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="三、解决方案2"><a href="#三、解决方案2" class="headerlink" title="三、解决方案2"></a>三、解决方案2</h3><hr>
+<h4 id="3-1-Logback-SLF4j"><a href="#3-1-Logback-SLF4j" class="headerlink" title="3.1 Logback+SLF4j"></a>3.1 Logback+SLF4j</h4><h5 id="3-1-1-导入依赖"><a href="#3-1-1-导入依赖" class="headerlink" title="3.1.1 导入依赖"></a>3.1.1 导入依赖</h5><blockquote>
+<p>项目中导入依赖</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Logback依赖，还会传递 slf4j 和 logback-core --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ch.qos.logback<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>logback-classic<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="3-1-2-基本使用"><a href="#3-1-2-基本使用" class="headerlink" title="3.1.2 基本使用"></a>3.1.2 基本使用</h5><blockquote>
+<p>Logback+SLF4J 基本API</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> sun.rmi.runtime.Log;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloLog</span> &#123;</span><br><span class="line">    <span class="comment">// 需要输出日志的类，可以创建一个log属性</span></span><br><span class="line">    <span class="type">Logger</span> <span class="variable">log</span> <span class="operator">=</span> LoggerFactory.getLogger(HelloLog.class);</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test1</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(log.getClass());</span><br><span class="line">        log.trace(<span class="string">&quot;hello trace&quot;</span>);</span><br><span class="line">        log.debug(<span class="string">&quot;hello debug&quot;</span>);</span><br><span class="line">        log.info(<span class="string">&quot;hello info&quot;</span>);</span><br><span class="line">        log.warn(<span class="string">&quot;hello warn&quot;</span>);</span><br><span class="line">        log.error(<span class="string">&quot;hello error&quot;</span>);</span><br><span class="line">        <span class="comment">// 注意，logback中没有fatal日志</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-1-3-配置信息"><a href="#3-1-3-配置信息" class="headerlink" title="3.1.3 配置信息"></a>3.1.3 配置信息</h5><blockquote>
+<p>定义<a href="">logback.xml</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>占位符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%d{yyyy-MM-dd  HH:mm:ss.SSS}</td>
+<td>日期</td>
+</tr>
+<tr>
+<td>%5p</td>
+<td>日志级别，5位字符长度显示，如果内容占不满5位则内容右对齐并在左侧补空格</td>
+</tr>
+<tr>
+<td>%-5p</td>
+<td>5位字符长度显示日志级别，如果内容占不满5位则内容左对齐并在右侧补空格                                 -代表左对齐</td>
+</tr>
+<tr>
+<td>%logger</td>
+<td>日志所在包和类</td>
+</tr>
+<tr>
+<td>%M</td>
+<td>日志所在方法名</td>
+</tr>
+<tr>
+<td>%L</td>
+<td>日志所在代码行</td>
+</tr>
+<tr>
+<td>%m</td>
+<td>日志正文</td>
+</tr>
+<tr>
+<td>%n</td>
+<td>换行</td>
+</tr>
+</tbody></table>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- scan:当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。</span></span><br><span class="line"><span class="comment">	 默认的时间间隔为1分钟。 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- de<span class="doctag">bug:</span>当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>  <span class="attr">scan</span>=<span class="string">&quot;true&quot;</span> <span class="attr">scanPeriod</span>=<span class="string">&quot;60 seconds&quot;</span> <span class="attr">debug</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 定义变量，可通过 $&#123;log.path&#125;和$&#123;CONSOLE_LOG_PATTERN&#125; 得到变量值 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;log.path&quot;</span> <span class="attr">value</span>=<span class="string">&quot;D:/log&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;CONSOLE_LOG_PATTERN&quot;</span> </span></span><br><span class="line"><span class="tag">              <span class="attr">value</span>=<span class="string">&quot;%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; |-[%-5p] in %logger.%M[line-%L] -%m%n&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 输出到控制台 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;CONSOLE&quot;</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.ConsoleAppender&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- Threshold=即最低日志级别，此appender输出大于等于对应级别的日志</span></span><br><span class="line"><span class="comment">             (当然还要满足root中定义的最低级别)</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.classic.filter.ThresholdFilter&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">level</span>&gt;</span>debug<span class="tag">&lt;/<span class="name">level</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 日志格式(引用变量) --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Pattern</span>&gt;</span>$&#123;CONSOLE_LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">Pattern</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 设置字符集 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">charset</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">charset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 追加到文件中 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.FileAppender&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;log.path&#125;/hello2.log<span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;CONSOLE_LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 滚动追加到文件中 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;file2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 正在记录的日志文件的路径及文件名 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;log.path&#125;/hello.log<span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--日志文件输出格式--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;CONSOLE_LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">charset</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">charset</span>&gt;</span> <span class="comment">&lt;!-- 设置字符集 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 日志记录器的滚动策略，按日期，按大小记录</span></span><br><span class="line"><span class="comment">             文件超过最大尺寸后，会新建文件，然后新的日志文件中继续写入</span></span><br><span class="line"><span class="comment">             如果日期变更，也会新建文件，然后在新的日志文件中写入当天日志</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 新建文件后，原日志改名为如下  %i=文件序号，从0开始 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>$&#123;log.path&#125;/hello-%d&#123;yyyy-MM-dd&#125;.%i.log<span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 每个日志文件的最大体量 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">timeBasedFileNamingAndTriggeringPolicy</span> </span></span><br><span class="line"><span class="tag">                <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>8kb<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">timeBasedFileNamingAndTriggeringPolicy</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 日志文件保留天数，1=则只保留昨天的归档日志文件 ,不设置则保留所有日志--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>1<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">&quot;trace&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;CONSOLE&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;file&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;file2&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>log</tag>
+      </tags>
+  </entry>
 </search>
