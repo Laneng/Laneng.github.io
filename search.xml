@@ -53,7 +53,7 @@
   </entry>
   <entry>
     <title>Java学习路线整理</title>
-    <url>/2023/04/12/%E4%BB%8A%E6%97%A5%E6%80%BB%E7%BB%93/</url>
+    <url>/2023/04/10/%E4%BB%8A%E6%97%A5%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="面向多CPU的最新垃圾回收器-G1"><a href="#面向多CPU的最新垃圾回收器-G1" class="headerlink" title="面向多CPU的最新垃圾回收器-G1"></a>面向多CPU的最新垃圾回收器-G1</h1><h2 id="G1最大的特征"><a href="#G1最大的特征" class="headerlink" title="G1最大的特征"></a>G1最大的特征</h2><p>将大空间分成若干区域,能实现一些更复杂,更精细的的功能</p>
 <h2 id="划分成小区域的好处"><a href="#划分成小区域的好处" class="headerlink" title="划分成小区域的好处"></a>划分成小区域的好处</h2><ol>
 <li>垃圾回收线程和工作线程能够并行工作,避免”SWT”</li>
