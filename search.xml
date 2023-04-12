@@ -1327,4 +1327,287 @@
         <tag>Java</tag>
       </tags>
   </entry>
+  <entry>
+    <title>定时任务</title>
+    <url>/2019/04/24/quartz/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><meta name="referrer" content="no-referrer" />
+
+<p><img src="https://gitee.com/lan-xiaodong/myblog/raw/master/img/Quartz_Logo_large.jpg" alt="Quartz_Logo_large"></p>
+<blockquote>
+<p>Author：Shine</p>
+<p>Version：9.0.2</p>
+</blockquote>
+<p>[TOC]</p>
+<h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><hr>
+<h4 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h4><blockquote>
+<p><strong>Quartz</strong> ：<a href="http://www.quartz-scheduler.org/">http://www.quartz-scheduler.org/</a></p>
+<p>是一个<a href="">定时任务调度框架</a>。比如你遇到这样的问题：</p>
+<ul>
+<li>想在30分钟后，查看订单是否支付，未支付则取消订单</li>
+<li>想在每月29号，信用卡自动还款</li>
+<li>…</li>
+<li>想定时在某个时间，去做某件事(任务)。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Quartz是要做定时任务的调度，设置好触发时间规则，以及相应的任务(Job)即可。</p>
+</blockquote>
+<h3 id="二、Quartz使用"><a href="#二、Quartz使用" class="headerlink" title="二、Quartz使用"></a>二、Quartz使用</h3><hr>
+<h4 id="2-1-导入依赖"><a href="#2-1-导入依赖" class="headerlink" title="2.1 导入依赖"></a>2.1 导入依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--Quartz任务调度--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.quartz-scheduler<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-定义Job"><a href="#2-2-定义Job" class="headerlink" title="2.2 定义Job"></a>2.2 定义Job</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 工作类的具体实现，即需要定时执行的“某件事”</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloQuartz</span> <span class="keyword">implements</span> <span class="title class_">Job</span> &#123;</span><br><span class="line">    <span class="comment">//执行</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(JobExecutionContext context)</span> <span class="keyword">throws</span> JobExecutionException &#123;</span><br><span class="line">         <span class="comment">//创建工作详情</span></span><br><span class="line">        JobDetail jobDetail=context.getJobDetail();</span><br><span class="line">        <span class="comment">//获取工作的名称</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">jobName</span> <span class="operator">=</span> jobDetail.getKey().getName();<span class="comment">//任务名</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">jobGroup</span> <span class="operator">=</span> jobDetail.getKey().getGroup();<span class="comment">//任务group</span></span><br><span class="line">        System.out.println(<span class="string">&quot;job执行，job：&quot;</span>+jobName+<span class="string">&quot; group:&quot;</span>+jobGroup);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-API测试"><a href="#2-3-API测试" class="headerlink" title="2.3 API测试"></a>2.3 API测试</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="comment">//创建scheduler，调度器</span></span><br><span class="line">            <span class="type">Scheduler</span> <span class="variable">scheduler</span> <span class="operator">=</span> StdSchedulerFactory.getDefaultScheduler();</span><br><span class="line">            <span class="comment">//定义一个Trigger,触发条件类</span></span><br><span class="line">            <span class="type">Trigger</span> <span class="variable">trigger</span> <span class="operator">=</span> TriggerBuilder.newTrigger()</span><br><span class="line">                	.withIdentity(<span class="string">&quot;trigger1&quot;</span>, <span class="string">&quot;group1&quot;</span>) <span class="comment">//定义name/group</span></span><br><span class="line">                	.startNow()<span class="comment">//一旦加入scheduler，立即生效，即开始计时</span></span><br><span class="line">                	.withSchedule(SimpleScheduleBuilder.simpleSchedule()</span><br><span class="line">                              .withIntervalInSeconds(<span class="number">1</span>) <span class="comment">//每隔一秒执行一次</span></span><br><span class="line">                              .repeatForever()) <span class="comment">//一直执行，直到结束时间</span></span><br><span class="line">                	.endAt(<span class="keyword">new</span> <span class="title class_">GregorianCalendar</span>(<span class="number">2019</span>,<span class="number">7</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">7</span>,<span class="number">0</span>).getTime());<span class="comment">//设置结束时间</span></span><br><span class="line">            <span class="comment">//定义一个JobDetail</span></span><br><span class="line">            <span class="comment">//定义Job类为HelloQuartz类，这是真正的执行逻辑所在</span></span><br><span class="line">            <span class="type">JobDetail</span> <span class="variable">job</span> <span class="operator">=</span> JobBuilder.newJob(HelloQuartz.class) </span><br><span class="line">                    .withIdentity(<span class="string">&quot;job1&quot;</span>,<span class="string">&quot;group1&quot;</span>) <span class="comment">//定义name/group</span></span><br><span class="line">                    .build();</span><br><span class="line">            <span class="comment">//调度器 中加入 任务和触发器</span></span><br><span class="line">            scheduler.scheduleJob(job, trigger);</span><br><span class="line">            <span class="comment">//启动任务调度</span></span><br><span class="line">            scheduler.start();            </span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception ex)&#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-配置"><a href="#2-4-配置" class="headerlink" title="2.4 配置"></a>2.4 配置</h4><figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 名为：quartz.properties，放置在classpath下，如果没有此配置则按默认配置启动</span></span><br><span class="line"><span class="comment"># 指定调度器名称，非实现类</span></span><br><span class="line"><span class="attr">org.quartz.scheduler.instanceName</span> = <span class="string">DefaultQuartzScheduler</span></span><br><span class="line"><span class="comment"># 指定线程池实现类</span></span><br><span class="line"><span class="attr">org.quartz.threadPool.class</span> = <span class="string">org.quartz.simpl.SimpleThreadPool</span></span><br><span class="line"><span class="comment"># 线程池线程数量</span></span><br><span class="line"><span class="attr">org.quartz.threadPool.threadCount</span> = <span class="string">10 </span></span><br><span class="line"><span class="comment"># 优先级，默认5</span></span><br><span class="line"><span class="attr">org.quartz.threadPool.threadPriority</span> = <span class="string">5</span></span><br><span class="line"><span class="comment"># 非持久化job</span></span><br><span class="line"><span class="attr">org.quartz.jobStore.class</span> = <span class="string">org.quartz.simpl.RAMJobStore</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-核心类说明"><a href="#2-5-核心类说明" class="headerlink" title="2.5 核心类说明"></a>2.5 核心类说明</h4><blockquote>
+<p>Scheduler：调度器。所有的调度都是由它控制，是Quartz的大脑，所有任务都是由它来管理</p>
+<p>Job：任务，想定时执行的事情(定义业务逻辑)</p>
+<p>JobDetail：基于Job，进一步包装。其中关联一个Job，并为Job指定更详细的属性，比如标识等</p>
+<p>Trigger：触发器。可以指定给某个任务，指定任务的触发机制。</p>
+</blockquote>
+<h3 id="三、Trigger"><a href="#三、Trigger" class="headerlink" title="三、Trigger"></a>三、Trigger</h3><hr>
+<h4 id="3-1-SimpleTrigger"><a href="#3-1-SimpleTrigger" class="headerlink" title="3.1 SimpleTrigger"></a>3.1 SimpleTrigger</h4><blockquote>
+<p>以一定的时间间隔（单位是毫秒）执行的任务。</p>
+<ul>
+<li>指定起始和截止时间(时间段)</li>
+<li>指定时间间隔、执行次数</li>
+</ul>
+</blockquote>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">SimpleTrigger</span> <span class="variable">trigger</span> <span class="operator">=</span> TriggerBuilder.newTrigger()</span><br><span class="line">                .withIdentity(<span class="string">&quot;trigger1&quot;</span>, <span class="string">&quot;group1&quot;</span>)</span><br><span class="line">                .startNow()</span><br><span class="line">            	.withSchedule(SimpleScheduleBuilder.simpleSchedule()</span><br><span class="line">                          .withIntervalInSeconds(<span class="number">1</span>) <span class="comment">//每秒执行一次</span></span><br><span class="line">                          .repeatForever())<span class="comment">// 不限执行次数</span></span><br><span class="line">                .endAt(<span class="keyword">new</span> <span class="title class_">GregorianCalendar</span>(<span class="number">2020</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">24</span>, <span class="number">0</span>).getTime())</span><br><span class="line">                .build();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">SimpleTrigger</span> <span class="variable">trigger</span> <span class="operator">=</span> TriggerBuilder.newTrigger()</span><br><span class="line">                .withIdentity(<span class="string">&quot;trigger1&quot;</span>, <span class="string">&quot;group1&quot;</span>)</span><br><span class="line">                .startNow()</span><br><span class="line">            	.withSchedule(SimpleScheduleBuilder.simpleSchedule()</span><br><span class="line">                          .withIntervalInMinutes(<span class="number">3</span>) <span class="comment">// 每3分钟执行一次</span></span><br><span class="line">                          .withRepeatCount(<span class="number">3</span>)) <span class="comment">// 执行次数不超过3次</span></span><br><span class="line">                .endAt(<span class="keyword">new</span> <span class="title class_">GregorianCalendar</span>(<span class="number">2020</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">24</span>, <span class="number">0</span>).getTime()) </span><br><span class="line">                .build();</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-CronTrigger-【重点】"><a href="#3-2-CronTrigger-【重点】" class="headerlink" title="3.2 CronTrigger 【重点】"></a>3.2 CronTrigger 【<code>重点</code>】</h4><blockquote>
+<p>适合于更复杂的任务，它支持类型于Linux Cron的语法（并且更强大）。</p>
+<ul>
+<li>指定Cron表达式即可</li>
+</ul>
+</blockquote>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 每天10:00-12:00，每隔2分钟执行一次</span></span><br><span class="line"><span class="type">CronTrigger</span> <span class="variable">trigger</span> <span class="operator">=</span> TriggerBuilder.newTrigger()</span><br><span class="line">                .withIdentity(<span class="string">&quot;t1&quot;</span>, <span class="string">&quot;g1&quot;</span>)</span><br><span class="line">                .withSchedule(CronScheduleBuilder.cronSchedule(<span class="string">&quot;0 0/2 10-12 * * ?&quot;</span>)).build(); </span><br></pre></td></tr></table></figure>
+
+<h5 id="3-2-1-Cron表达式组成"><a href="#3-2-1-Cron表达式组成" class="headerlink" title="3.2.1 Cron表达式组成"></a>3.2.1 Cron表达式组成</h5><blockquote>
+<p>表达式组成：”秒 分 时 日 月 星期几 [年]” ，其中”年” 是可选的，一般不指定。</p>
+<ul>
+<li>如：”10 20 18 3 5 ?”代表”5月3日18点20分10秒，星期几不确定 “</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>时间域</th>
+<th>允许值</th>
+<th>特殊值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>秒</td>
+<td>0-59</td>
+<td>, - * &#x2F;</td>
+</tr>
+<tr>
+<td>2</td>
+<td>分钟</td>
+<td>0-59</td>
+<td>, - * &#x2F;</td>
+</tr>
+<tr>
+<td>3</td>
+<td>小时</td>
+<td>0-23</td>
+<td>, - * &#x2F;</td>
+</tr>
+<tr>
+<td>4</td>
+<td>日期</td>
+<td>1-31</td>
+<td>, - * ? &#x2F; L W</td>
+</tr>
+<tr>
+<td>5</td>
+<td>月份</td>
+<td>1-12</td>
+<td>, - * &#x2F;</td>
+</tr>
+<tr>
+<td>6</td>
+<td>星期</td>
+<td>1-7</td>
+<td>, - * ? &#x2F; L  #</td>
+</tr>
+<tr>
+<td>7</td>
+<td>年份（可选）</td>
+<td></td>
+<td>, - * &#x2F;</td>
+</tr>
+</tbody></table>
+<h5 id="3-2-2-Cron表达式符号"><a href="#3-2-2-Cron表达式符号" class="headerlink" title="3.2.2 Cron表达式符号"></a>3.2.2 Cron表达式符号</h5><blockquote>
+<p>表达式中可使用的特殊符号的含义如下</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">星号(*)</td>
+<td>可用在所有字段中，表示对应时间域的每一个时刻，例如， 在分钟字段时，表示“每分钟”</td>
+</tr>
+<tr>
+<td align="center">问号(?)</td>
+<td>该字符只在日期和星期字段中使用，它通常指定为“不确定值”</td>
+</tr>
+<tr>
+<td align="center">减号(-)</td>
+<td>表达一个范围，如在小时字段中使用“10-12”，则表示从10到12点，即10,11,12</td>
+</tr>
+<tr>
+<td align="center">逗号(,)</td>
+<td>表达一个列表值，如在星期字段中使用“MON,WED,FRI”，则表示星期一，星期三和星期五</td>
+</tr>
+<tr>
+<td align="center">斜杠(&#x2F;)</td>
+<td>x&#x2F;y表达一个等步长序列，x为起始值，y为增量步长值。如在分钟字段中使用0&#x2F;15，则表示为0,15,30和45秒，而5&#x2F;15在分钟字段		 中表示5,20,35,50</td>
+</tr>
+<tr>
+<td align="center">井号(#)</td>
+<td>该字符只用在星期字段中，”4#2”代表第二个星期3，“5#4”代表第4个星期四</td>
+</tr>
+<tr>
+<td align="center">L</td>
+<td>该字符只在日期和星期字段中使用，代表“Last”的意思，但它在两个字段中意思不同。</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>如果L用在星期字段里，则表示星期六，等同于7</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>L出现在星期字段里，而且在前面有一个数值x，则表示“这个月的最后一个周x”，例如，6L表示该月的最后星期五</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>L在日期字段中，表示这个月份的最后一天，如一月的31号，非闰年二月的28号</td>
+</tr>
+<tr>
+<td align="center">W</td>
+<td>该字符只能出现在日期字段里，是对前导日期的修饰，表示离该日期最近的工作日</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>例如15W表示离该月15号最近的工作日，如果该月15号是星期六，则匹配14号星期五；如果15日是星期日，则匹配16号星期一；如果15号	 是星期二，那结果就是15号星期二；但必须注意关联的匹配日期不能够跨月</td>
+</tr>
+<tr>
+<td align="center">LW组合</td>
+<td>在日期字段可以组合使用LW，它的意思是当月的最后一个工作日</td>
+</tr>
+</tbody></table>
+<h5 id="3-2-3-Cron表达式示例"><a href="#3-2-3-Cron表达式示例" class="headerlink" title="3.2.3 Cron表达式示例"></a>3.2.3 Cron表达式示例</h5><blockquote>
+<p>演示实例</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>表示式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0 0 12 * * ?</td>
+<td>每天12点运行</td>
+</tr>
+<tr>
+<td>0 15 10 * * ?</td>
+<td>每天10:15运行</td>
+</tr>
+<tr>
+<td>0 15 10 * * ? 2008</td>
+<td>在2008年的每天10：15运行</td>
+</tr>
+<tr>
+<td>0 * 14 * * ?</td>
+<td>每天14点到15点之间每分钟运行一次，开始于14:00，结束于14:59。</td>
+</tr>
+<tr>
+<td>0 0&#x2F;5 14 * * ?</td>
+<td>每天14点到15点每5分钟运行一次，开始于14:00，结束于14:55。</td>
+</tr>
+<tr>
+<td>0 0&#x2F;5 14,18 * * ?</td>
+<td>每天14点到15点每5分钟运行一次，此外每天18点到19点每5钟也运行一次。</td>
+</tr>
+<tr>
+<td>0 0-5 14 * * ?</td>
+<td>每天14:00点到14:05，每分钟运行一次。</td>
+</tr>
+<tr>
+<td>0 0-5&#x2F;2 14 * * ?</td>
+<td>每天14:00点到14:05，每2分钟运行一次。</td>
+</tr>
+<tr>
+<td>0 10,44 14 ? 3 4</td>
+<td>3月每周三的14:10分和14:44分，各运行一次。</td>
+</tr>
+<tr>
+<td>0 15 10 ? * 2-6</td>
+<td>每周一，二，三，四，五的10:15分运行一次。</td>
+</tr>
+<tr>
+<td>0 15 10 15 * ?</td>
+<td>每月15日10:15分运行。</td>
+</tr>
+<tr>
+<td>0 15 10 L * ?</td>
+<td>每月最后一天10:15分运行。</td>
+</tr>
+<tr>
+<td>0 15 10 ? * 6L</td>
+<td>每月最后一个星期五10:15分运行。【此时天必须是”?”】</td>
+</tr>
+<tr>
+<td>0 15 10 ? * 6L 2007-2009</td>
+<td>在2007,2008,2009年每个月的最后一个星期五的10:15分运行。</td>
+</tr>
+</tbody></table>
+<h3 id="四、Spring整合Quartz-【重点】"><a href="#四、Spring整合Quartz-【重点】" class="headerlink" title="四、Spring整合Quartz 【重点】"></a>四、Spring整合Quartz 【<code>重点</code>】</h3><h4 id="4-1-依赖"><a href="#4-1-依赖" class="headerlink" title="4.1 依赖"></a>4.1 依赖</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">springframework.version</span>&gt;</span>5.1.6.RELEASE<span class="tag">&lt;/<span class="name">springframework.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">quartz.version</span>&gt;</span>2.2.3<span class="tag">&lt;/<span class="name">quartz.version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context-support<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;springframework.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">     <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-tx<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;springframework.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.quartz-scheduler<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;quartz.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-定义Job"><a href="#4-2-定义Job" class="headerlink" title="4.2 定义Job"></a>4.2 定义Job</h4><blockquote>
+<p>定义一个Job类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyJob</span> <span class="keyword">implements</span> <span class="title class_">Job</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(JobExecutionContext jobExecutionContext)</span> <span class="keyword">throws</span> JobExecutionException &#123;</span><br><span class="line">        System.err.println(<span class="string">&quot;job 执行&quot;</span>+<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-配置"><a href="#4-3-配置" class="headerlink" title="4.3 配置"></a>4.3 配置</h4><blockquote>
+<p>调度器   SchedulerFactoryBean</p>
+<p>触发器   CronTriggerFactoryBean</p>
+<p>JobDetail   JobDetailFactoryBean</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        Spring整合Quartz进行配置遵循下面的步骤：</span></span><br><span class="line"><span class="comment">        1：定义工作任务的Job</span></span><br><span class="line"><span class="comment">        2：定义触发器Trigger，并将触发器与工作任务绑定</span></span><br><span class="line"><span class="comment">        3：定义调度器，并将Trigger注册到Scheduler</span></span><br><span class="line"><span class="comment">     --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 1：定义任务的bean ，这里使用JobDetailFactoryBean,也可以使用MethodInvokingJobDetailFactoryBean ，配置类似--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">&quot;lxJob&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.scheduling.quartz.JobDetailFactoryBean&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 指定job的名称 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;job1&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 指定job的分组 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;group&quot;</span> <span class="attr">value</span>=<span class="string">&quot;job_group1&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 指定具体的job类 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;jobClass&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.qf.quartz.MyJob&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 2：定义触发器的bean，定义一个Cron的Trigger，一个触发器只能和一个任务进行绑定 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;cronTrigger&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.scheduling.quartz.CronTriggerFactoryBean&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 指定Trigger的名称 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;trigger1&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 指定Trigger的名称 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;group&quot;</span> <span class="attr">value</span>=<span class="string">&quot;trigger_group1&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 指定Tirgger绑定的JobDetail --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;jobDetail&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;lxJob&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 指定Cron 的表达式 ，当前是每隔5s运行一次 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;cronExpression&quot;</span> <span class="attr">value</span>=<span class="string">&quot;*/5 * * * * ?&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 3.定义调度器，并将Trigger注册到调度器中 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;scheduler&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.scheduling.quartz.SchedulerFactoryBean&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;triggers&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">&quot;cronTrigger&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 添加 quartz 配置，如下两种方式均可 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--&lt;property name=&quot;configLocation&quot; value=&quot;classpath:quartz.properties&quot;&gt;&lt;/property&gt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;quartzProperties&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span></span><br><span class="line">                # 指定调度器名称，实际类型为：QuartzScheduler</span><br><span class="line">                org.quartz.scheduler.instanceName = MyScheduler</span><br><span class="line">                # 指定连接池</span><br><span class="line">                org.quartz.threadPool.class = org.quartz.simpl.SimpleThreadPool</span><br><span class="line">                # 连接池线程数量</span><br><span class="line">                org.quartz.threadPool.threadCount = 11</span><br><span class="line">                # 优先级</span><br><span class="line">                org.quartz.threadPool.threadPriority = 5</span><br><span class="line">                # 不持久化job</span><br><span class="line">                org.quartz.jobStore.class = org.quartz.simpl.RAMJobStore</span><br><span class="line">            <span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4-操作"><a href="#4-4-操作" class="headerlink" title="4.4 操作"></a>4.4 操作</h4><h5 id="4-4-1-启动任务"><a href="#4-4-1-启动任务" class="headerlink" title="4.4.1 启动任务"></a>4.4.1 启动任务</h5><blockquote>
+<p>工厂启动，调度器启动，任务调度开始</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException, SchedulerException &#123;	</span><br><span class="line">    <span class="comment">// 工厂启动，任务启动，工厂关闭，任务停止</span></span><br><span class="line">	<span class="type">ApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-4-2-任务操作"><a href="#4-4-2-任务操作" class="headerlink" title="4.4.2 任务操作"></a>4.4.2 任务操作</h5><h6 id="4-4-2-1-删除任务"><a href="#4-4-2-1-删除任务" class="headerlink" title="4.4.2.1 删除任务"></a>4.4.2.1 删除任务</h6><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException, SchedulerException &#123;		</span><br><span class="line">    <span class="type">ApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;=============&quot;</span>);</span><br><span class="line">    <span class="type">StdScheduler</span> <span class="variable">scheduler</span> <span class="operator">=</span> (StdScheduler) context.getBean(<span class="string">&quot;scheduler&quot;</span>);</span><br><span class="line">    System.out.println(scheduler.getClass());</span><br><span class="line">    Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">    <span class="comment">// 删除Job</span></span><br><span class="line">    scheduler.deleteJob(JobKey.jobKey(<span class="string">&quot;job1&quot;</span>,<span class="string">&quot;job_group1&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="4-4-2-2-暂停、恢复"><a href="#4-4-2-2-暂停、恢复" class="headerlink" title="4.4.2.2 暂停、恢复"></a>4.4.2.2 暂停、恢复</h6><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException, SchedulerException &#123;		</span><br><span class="line">    <span class="type">ApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;=============&quot;</span>);</span><br><span class="line">    <span class="type">StdScheduler</span> <span class="variable">scheduler</span> <span class="operator">=</span> (StdScheduler) context.getBean(<span class="string">&quot;scheduler&quot;</span>);</span><br><span class="line">    System.out.println(scheduler.getClass());</span><br><span class="line">    Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">    <span class="comment">// 暂停，恢复工作</span></span><br><span class="line">    scheduler.pauseJob(JobKey.jobKey(<span class="string">&quot;job1&quot;</span>,<span class="string">&quot;job_group1&quot;</span>));<span class="comment">// 暂停工作</span></span><br><span class="line">    Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">    scheduler.resumeJob(JobKey.jobKey(<span class="string">&quot;job1&quot;</span>,<span class="string">&quot;job_group1&quot;</span>));<span class="comment">// 恢复工作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="4-4-2-3-批量操作"><a href="#4-4-2-3-批量操作" class="headerlink" title="4.4.2.3 批量操作"></a>4.4.2.3 批量操作</h6><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException, SchedulerException &#123;		</span><br><span class="line">    <span class="type">ApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;=============&quot;</span>);</span><br><span class="line">    <span class="type">StdScheduler</span> <span class="variable">scheduler</span> <span class="operator">=</span> (StdScheduler) context.getBean(<span class="string">&quot;scheduler&quot;</span>);</span><br><span class="line">    System.out.println(scheduler.getClass());</span><br><span class="line">    Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">    GroupMatcher&lt;JobKey&gt; group1 = GroupMatcher.groupEquals(<span class="string">&quot;group1&quot;</span>);</span><br><span class="line">    scheduler.pauseJobs(group1); <span class="comment">// 暂停组中所有工作</span></span><br><span class="line">    Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">    scheduler.resumeJobs(group1); <span class="comment">// 恢复组中所有工作 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>定时任务</category>
+      </categories>
+      <tags>
+        <tag>ssm</tag>
+      </tags>
+  </entry>
 </search>
