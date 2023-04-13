@@ -6,7 +6,7 @@
   <link href="http://laneng.github.io/atom.xml" rel="self"/>
   
   <link href="http://laneng.github.io/"/>
-  <updated>2023-04-13T00:09:43.219Z</updated>
+  <updated>2023-04-13T00:21:46.825Z</updated>
   <id>http://laneng.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>html</title>
+    <link href="http://laneng.github.io/2023/04/13/html/"/>
+    <id>http://laneng.github.io/2023/04/13/html/</id>
+    <published>2023-04-13T00:20:31.227Z</published>
+    <updated>2023-04-13T00:21:46.825Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="html" scheme="http://laneng.github.io/categories/html/"/>
+    
+    
+    <category term="前端" scheme="http://laneng.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>SpringBoot</title>
