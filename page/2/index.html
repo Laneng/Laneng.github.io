@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>servlet |  个人博客</title>
+      <title> 个人博客</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -58,8 +58,857 @@
         style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
       
     <main class="content on">
-      <section class="outer">
-  <article
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/sunset.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">个人博客</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.staticfile.org/typed.js/2.0.12/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['欢迎来到小东的个人博客', '勤学如春起之草，不见其增，日见其长', '坦坦荡荡，无愧于心'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-Log"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/04/24/Log/"
+    >日志</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/04/24/Log/" class="article-date">
+  <time datetime="2019-04-24T07:40:24.000Z" itemprop="datePublished">2019-04-24</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>[TOC]</p>
+
+    <div id="aplayer-nRfjZpju" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="2121130123" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
+    ></div>
+
+<h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><hr>
+<h4 id="1-1-日志介绍"><a href="#1-1-日志介绍" class="headerlink" title="1.1 日志介绍"></a>1.1 日志介绍</h4><blockquote>
+<p>用于记录系统中发生的各种事件。记录的位置常见的有 ：控制台、磁盘文件等</p>
+</blockquote>
+<h4 id="1-2-日志级别"><a href="#1-2-日志级别" class="headerlink" title="1.2 日志级别"></a>1.2 日志级别</h4><blockquote>
+<p>日志级别从低到高：</p>
+<p>TRACE、DEBUG、INFO、WARN、ERROR、FATAL</p>
+</blockquote>
+<h4 id="1-3-日志作用"><a href="#1-3-日志作用" class="headerlink" title="1.3 日志作用"></a>1.3 日志作用</h4><blockquote>
+<ul>
+<li>通过日志观察、分析项目的运行情况 (项目维护)</li>
+<li>通过日志分析用户的使用情况 (大数据分析)</li>
+<li>…</li>
+</ul>
+</blockquote>
+<h3 id="二、解决方案1"><a href="#二、解决方案1" class="headerlink" title="二、解决方案1"></a>二、解决方案1</h3><hr>
+<h4 id="2-1-Log4j-Commons-Logging"><a href="#2-1-Log4j-Commons-Logging" class="headerlink" title="2.1 Log4j+Commons-Logging"></a>2.1 Log4j+Commons-Logging</h4><h5 id="2-1-1-导入依赖"><a href="#2-1-1-导入依赖" class="headerlink" title="2.1.1 导入依赖"></a>2.1.1 导入依赖</h5><blockquote>
+<p>项目中添加 Log4j和Commons-Logging的依赖</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/log4j/log4j --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/commons-logging/commons-logging --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-1-2-基本使用"><a href="#2-1-2-基本使用" class="headerlink" title="2.1.2 基本使用"></a>2.1.2 基本使用</h5><blockquote>
+<p>基本API</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.commons.logging.Log;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.logging.LogFactory;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloLog</span> &#123;</span><br><span class="line">	<span class="comment">// 需要输出日志的类，可以创建一个log属性</span></span><br><span class="line">    <span class="type">Log</span> <span class="variable">log</span> <span class="operator">=</span> LogFactory.getLog(HelloLog.class);</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test1</span><span class="params">()</span>&#123;</span><br><span class="line">        log.trace(<span class="string">&quot;hello trace&quot;</span>);</span><br><span class="line">        log.debug(<span class="string">&quot;hello debug&quot;</span>);</span><br><span class="line">        log.info(<span class="string">&quot;hello info&quot;</span>);</span><br><span class="line">        log.warn(<span class="string">&quot;hello warn&quot;</span>);</span><br><span class="line">        log.error(<span class="string">&quot;hello error&quot;</span>);</span><br><span class="line">        log.fatal(<span class="string">&quot;hello fatal&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-1-3-配置信息"><a href="#2-1-3-配置信息" class="headerlink" title="2.1.3 配置信息"></a>2.1.3 配置信息</h5><blockquote>
+<p>定义配置文件 <a href="">log4j.xml</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>占位符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%p</td>
+<td>输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL</td>
+</tr>
+<tr>
+<td>%r</td>
+<td>输出自应用启动到输出该log信息耗费的毫秒数</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>输出所在类的全名</td>
+</tr>
+<tr>
+<td>%t</td>
+<td>输出产生该日志事件的线程名</td>
+</tr>
+<tr>
+<td>%n</td>
+<td>输出一个回车换行符</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d{yyyy-MM-dd  HH:mm:ss,SSS}，输出类似：2002-10-18  22:10:28,921</td>
+</tr>
+<tr>
+<td>%l</td>
+<td>输出日志事件的发生位置，包括类名、发生的线程，以及在代码中的行数。举例：Testlo4.main(TestLog4.java:10)</td>
+</tr>
+</tbody></table>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span>  encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">log4j</span>:configuration <span class="keyword">PUBLIC</span> <span class="string">&quot;-//LOGGER&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://org/apache/log4j/xml/log4j.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">log4j:configuration</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- org.apache.log4j.ConsoleAppender 输出到控制台 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;myConsole&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.log4j.ConsoleAppender&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--输出格式--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">layout</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.log4j.PatternLayout&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;ConversionPattern&quot;</span></span></span><br><span class="line"><span class="tag">                   <span class="attr">value</span>=<span class="string">&quot;%-d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125; [%c]-[%p] %m%n&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 输出到文件 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;myFile1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.log4j.RollingFileAppender&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;File&quot;</span> <span class="attr">value</span>=<span class="string">&quot;d:/log/hello.log&quot;</span>/&gt;</span><span class="comment">&lt;!--文件位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;Append&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span><span class="comment">&lt;!--是否选择追加--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;MaxFileSize&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1kb&quot;</span>/&gt;</span><span class="comment">&lt;!--文件最大字节数--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;MaxBackupIndex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span> /&gt;</span><span class="comment">&lt;!--新文件数量--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">layout</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.log4j.PatternLayout&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;ConversionPattern&quot;</span> <span class="attr">value</span>=<span class="string">&quot;%-d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125; [%c]-[%p] %m%n&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 输出到文件 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;myFile2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.log4j.DailyRollingFileAppender&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;File&quot;</span> <span class="attr">value</span>=<span class="string">&quot;d:/log/hello2.log&quot;</span>/&gt;</span><span class="comment">&lt;!--文件位置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;Append&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span><span class="comment">&lt;!--是否选择追加--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">layout</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.log4j.PatternLayout&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;ConversionPattern&quot;</span></span></span><br><span class="line"><span class="tag">                   <span class="attr">value</span>=<span class="string">&quot;%-d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125; [%c]-[%p] %m%n&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 根logger的设置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">root</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--优先级设置，all &lt; trace &lt; debug &lt; info &lt; warn &lt; error &lt; fatal &lt; off --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">priority</span> <span class="attr">value</span>=<span class="string">&quot;all&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;myConsole&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;myFile&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;myFile2&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">log4j:configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="三、解决方案2"><a href="#三、解决方案2" class="headerlink" title="三、解决方案2"></a>三、解决方案2</h3><hr>
+<h4 id="3-1-Logback-SLF4j"><a href="#3-1-Logback-SLF4j" class="headerlink" title="3.1 Logback+SLF4j"></a>3.1 Logback+SLF4j</h4><h5 id="3-1-1-导入依赖"><a href="#3-1-1-导入依赖" class="headerlink" title="3.1.1 导入依赖"></a>3.1.1 导入依赖</h5><blockquote>
+<p>项目中导入依赖</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Logback依赖，还会传递 slf4j 和 logback-core --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ch.qos.logback<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>logback-classic<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="3-1-2-基本使用"><a href="#3-1-2-基本使用" class="headerlink" title="3.1.2 基本使用"></a>3.1.2 基本使用</h5><blockquote>
+<p>Logback+SLF4J 基本API</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> sun.rmi.runtime.Log;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloLog</span> &#123;</span><br><span class="line">    <span class="comment">// 需要输出日志的类，可以创建一个log属性</span></span><br><span class="line">    <span class="type">Logger</span> <span class="variable">log</span> <span class="operator">=</span> LoggerFactory.getLogger(HelloLog.class);</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test1</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(log.getClass());</span><br><span class="line">        log.trace(<span class="string">&quot;hello trace&quot;</span>);</span><br><span class="line">        log.debug(<span class="string">&quot;hello debug&quot;</span>);</span><br><span class="line">        log.info(<span class="string">&quot;hello info&quot;</span>);</span><br><span class="line">        log.warn(<span class="string">&quot;hello warn&quot;</span>);</span><br><span class="line">        log.error(<span class="string">&quot;hello error&quot;</span>);</span><br><span class="line">        <span class="comment">// 注意，logback中没有fatal日志</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-1-3-配置信息"><a href="#3-1-3-配置信息" class="headerlink" title="3.1.3 配置信息"></a>3.1.3 配置信息</h5><blockquote>
+<p>定义<a href="">logback.xml</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>占位符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%d{yyyy-MM-dd  HH:mm:ss.SSS}</td>
+<td>日期</td>
+</tr>
+<tr>
+<td>%5p</td>
+<td>日志级别，5位字符长度显示，如果内容占不满5位则内容右对齐并在左侧补空格</td>
+</tr>
+<tr>
+<td>%-5p</td>
+<td>5位字符长度显示日志级别，如果内容占不满5位则内容左对齐并在右侧补空格                                 -代表左对齐</td>
+</tr>
+<tr>
+<td>%logger</td>
+<td>日志所在包和类</td>
+</tr>
+<tr>
+<td>%M</td>
+<td>日志所在方法名</td>
+</tr>
+<tr>
+<td>%L</td>
+<td>日志所在代码行</td>
+</tr>
+<tr>
+<td>%m</td>
+<td>日志正文</td>
+</tr>
+<tr>
+<td>%n</td>
+<td>换行</td>
+</tr>
+</tbody></table>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- scan:当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。</span></span><br><span class="line"><span class="comment">	 默认的时间间隔为1分钟。 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- de<span class="doctag">bug:</span>当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>  <span class="attr">scan</span>=<span class="string">&quot;true&quot;</span> <span class="attr">scanPeriod</span>=<span class="string">&quot;60 seconds&quot;</span> <span class="attr">debug</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 定义变量，可通过 $&#123;log.path&#125;和$&#123;CONSOLE_LOG_PATTERN&#125; 得到变量值 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;log.path&quot;</span> <span class="attr">value</span>=<span class="string">&quot;D:/log&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;CONSOLE_LOG_PATTERN&quot;</span> </span></span><br><span class="line"><span class="tag">              <span class="attr">value</span>=<span class="string">&quot;%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; |-[%-5p] in %logger.%M[line-%L] -%m%n&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 输出到控制台 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;CONSOLE&quot;</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.ConsoleAppender&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- Threshold=即最低日志级别，此appender输出大于等于对应级别的日志</span></span><br><span class="line"><span class="comment">             (当然还要满足root中定义的最低级别)</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.classic.filter.ThresholdFilter&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">level</span>&gt;</span>debug<span class="tag">&lt;/<span class="name">level</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 日志格式(引用变量) --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Pattern</span>&gt;</span>$&#123;CONSOLE_LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">Pattern</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 设置字符集 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">charset</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">charset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 追加到文件中 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.FileAppender&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;log.path&#125;/hello2.log<span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;CONSOLE_LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 滚动追加到文件中 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;file2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 正在记录的日志文件的路径及文件名 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;log.path&#125;/hello.log<span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--日志文件输出格式--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;CONSOLE_LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">charset</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">charset</span>&gt;</span> <span class="comment">&lt;!-- 设置字符集 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 日志记录器的滚动策略，按日期，按大小记录</span></span><br><span class="line"><span class="comment">             文件超过最大尺寸后，会新建文件，然后新的日志文件中继续写入</span></span><br><span class="line"><span class="comment">             如果日期变更，也会新建文件，然后在新的日志文件中写入当天日志</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 新建文件后，原日志改名为如下  %i=文件序号，从0开始 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>$&#123;log.path&#125;/hello-%d&#123;yyyy-MM-dd&#125;.%i.log<span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 每个日志文件的最大体量 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">timeBasedFileNamingAndTriggeringPolicy</span> </span></span><br><span class="line"><span class="tag">                <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">maxFileSize</span>&gt;</span>8kb<span class="tag">&lt;/<span class="name">maxFileSize</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">timeBasedFileNamingAndTriggeringPolicy</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 日志文件保留天数，1=则只保留昨天的归档日志文件 ,不设置则保留所有日志--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">maxHistory</span>&gt;</span>1<span class="tag">&lt;/<span class="name">maxHistory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">&quot;trace&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;CONSOLE&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;file&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;file2&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/log/" rel="tag">log</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
+  id="post-AJAX"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/04/24/AJAX/"
+    >ajax</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/04/24/AJAX/" class="article-date">
+  <time datetime="2019-04-24T07:40:24.000Z" itemprop="datePublished">2019-04-24</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+
+    <div id="aplayer-uuoluLGJ" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="2121130123" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
+    ></div>
+</blockquote>
+<p>[toc]</p>
+<h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><hr>
+<h4 id="1-1-什么是JSON"><a href="#1-1-什么是JSON" class="headerlink" title="1.1 什么是JSON"></a>1.1 什么是JSON</h4><blockquote>
+<p>JSON(JavaScript Object Notation, JS 对象标记) 是一种轻量级的数据交换格式。它基于 ECMAScript (W3C制定的JS规范)的一个子集，采用完全独立于编程语言的文本格式来存储和表示数据。简洁和清晰的层次结构使得 JSON 成为理想的数据交换语言。 易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率。</p>
+</blockquote>
+<h4 id="1-2-JSON语法"><a href="#1-2-JSON语法" class="headerlink" title="1.2 JSON语法"></a>1.2 JSON语法</h4><blockquote>
+<ul>
+<li><p>[]  表示数组</p>
+</li>
+<li><p>{}  表示对象</p>
+</li>
+<li><p>“”  表示是属性名或字符串类型的值</p>
+</li>
+<li><p>:   表示属性和值之间的间隔符</p>
+</li>
+<li><p>,   表示多个属性的间隔符或者是多个元素的间隔符</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="二、JSON解析【重点】"><a href="#二、JSON解析【重点】" class="headerlink" title="二、JSON解析【重点】"></a>二、JSON解析【<code>重点</code>】</h3><hr>
+<blockquote>
+<p>要解析的字符串：将字符串解析为Java对象</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对象嵌套数组嵌套对象</span></span><br><span class="line"><span class="title class_">String</span> json1=<span class="string">&quot;&#123;&#x27;id&#x27;:1,&#x27;name&#x27;:&#x27;JAVAEE-1703&#x27;,&#x27;stus&#x27;:[&#123;&#x27;id&#x27;:101,&#x27;name&#x27;:&#x27;刘一&#x27;,&#x27;age&#x27;:16&#125;]&#125;&quot;</span>;</span><br><span class="line"><span class="comment">//数组</span></span><br><span class="line"><span class="title class_">String</span> json2=<span class="string">&quot;[&#x27;北京&#x27;,&#x27;天津&#x27;,&#x27;杭州&#x27;]&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>初始的类：<ul>
+<li>Student.java</li>
+<li>Grade.java</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">    <span class="comment">//此处省略get和set方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Grade</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> ArrayList&lt;Student&gt; stus;</span><br><span class="line">    <span class="comment">//此处省略get和set方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-FastJSON解析"><a href="#2-1-FastJSON解析" class="headerlink" title="2.1 FastJSON解析"></a>2.1 FastJSON解析</h4><blockquote>
+<ul>
+<li>Fastjson 是一个 Java 库，可以将 Java 对象转换为 JSON 格式，当然它也可以将 JSON 字符串转换为 Java 对象</li>
+<li>提供了 toJSONString() 和 parseObject() 方法来将 Java 对象与 JSON 相互转换：<ul>
+<li>调用toJSONString方 法即可将对象转换成 JSON 字符串</li>
+<li>parseObject 方法则反过来将 JSON 字符串转换成对象。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>parseObject方法：字符串转换成对象</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FASTJson</span> &#123;</span><br><span class="line">    <span class="comment">//解析</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test1</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 对象嵌套数组嵌套对象</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">json1</span> <span class="operator">=</span> <span class="string">&quot;&#123;&#x27;id&#x27;:1,&#x27;name&#x27;:&#x27;JAVAEE-1703&#x27;,&#x27;stus&#x27;:[&#123;&#x27;id&#x27;:101,&#x27;name&#x27;:&#x27;刘铭&#x27;,&#x27;age&#x27;:16&#125;]&#125;&quot;</span>;</span><br><span class="line">        <span class="comment">// 数组</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">json2</span> <span class="operator">=</span> <span class="string">&quot;[&#x27;北京&#x27;,&#x27;天津&#x27;,&#x27;杭州&#x27;]&quot;</span>;</span><br><span class="line">        <span class="comment">//1、</span></span><br><span class="line">        <span class="comment">//静态方法</span></span><br><span class="line">        Grade grade=JSON.parseObject(json1, Grade.class);</span><br><span class="line">        System.out.println(grade);</span><br><span class="line">        <span class="comment">//2、</span></span><br><span class="line">        List&lt;String&gt; list=JSON.parseArray(json2, String.class);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>toJSONString方法：对象转换成 JSON 字符串</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FASTJson</span> &#123;</span><br><span class="line"><span class="comment">//生成</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test2</span><span class="params">()</span>&#123;</span><br><span class="line">        ArrayList&lt;Student&gt; list=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">            list.add(<span class="keyword">new</span> <span class="title class_">Student</span>(<span class="number">101</span>+i, <span class="string">&quot;码子&quot;</span>, <span class="number">20</span>+i));</span><br><span class="line">        &#125;</span><br><span class="line">        Grade grade=<span class="keyword">new</span> <span class="title class_">Grade</span>(<span class="number">100001</span>,<span class="string">&quot;张三&quot;</span>, list);</span><br><span class="line">        String json=JSON.toJSONString(grade);</span><br><span class="line">        System.out.println(json);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-Jackson解析"><a href="#2-2-Jackson解析" class="headerlink" title="2.2 Jackson解析"></a>2.2 Jackson解析</h4><blockquote>
+<ul>
+<li>Jackson 是一个能够将Java对象序列化为JSON字符串，也能够将JSON字符串反序列化为Java对象的框架；</li>
+<li>通过方法readValue和writeValue实现；</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JackSonTest</span> &#123;</span><br><span class="line">    <span class="comment">//解析</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test1</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="comment">// 对象嵌套数组嵌套对象</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">json1</span> <span class="operator">=</span> <span class="string">&quot;&#123;\&quot;id\&quot;:1,\&quot;name\&quot;:\&quot;JAVAEE-1703\&quot;,\&quot;stus\&quot;:[&#123;\&quot;id\&quot;:101,\&quot;name\&quot;:\&quot;刘一\&quot;,\&quot;age\&quot;:16&#125;]&#125;&quot;</span>;</span><br><span class="line">        <span class="comment">// 数组</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">json2</span> <span class="operator">=</span> <span class="string">&quot;[\&quot;北京\&quot;,\&quot;天津\&quot;,\&quot;杭州\&quot;]&quot;</span>;</span><br><span class="line">        <span class="comment">//1、</span></span><br><span class="line">        ObjectMapper mapper=<span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line">        Grade grade=mapper.readValue(json1, Grade.class);</span><br><span class="line">        System.out.println(grade);</span><br><span class="line">        <span class="comment">//2、</span></span><br><span class="line">        ArrayList&lt;String&gt; list=mapper.readValue(json2, </span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">TypeReference</span>&lt;ArrayList&lt;String&gt;&gt;() &#123;</span><br><span class="line">        &#125;);</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//生成</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test2</span><span class="params">()</span> <span class="keyword">throws</span> JsonProcessingException&#123;</span><br><span class="line">        ArrayList&lt;Student&gt; list=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">            list.add(<span class="keyword">new</span> <span class="title class_">Student</span>(<span class="number">101</span>+i, <span class="string">&quot;码子&quot;</span>, <span class="number">20</span>+i));</span><br><span class="line">        &#125;</span><br><span class="line">        Grade grade=<span class="keyword">new</span> <span class="title class_">Grade</span>(<span class="number">100001</span>,<span class="string">&quot;张三&quot;</span>, list);</span><br><span class="line">        ObjectMapper mapper=<span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line">        <span class="comment">//将对象转换为JSON格式字符串</span></span><br><span class="line">        String json=mapper.writeValueAsString(grade);</span><br><span class="line">        System.out.println(json);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-浏览器处理JSON字符串"><a href="#2-3-浏览器处理JSON字符串" class="headerlink" title="2.3 浏览器处理JSON字符串"></a>2.3 浏览器处理JSON字符串</h4><blockquote>
+<ul>
+<li>JSON.stringify()</li>
+</ul>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> json=&#123;<span class="attr">name</span>:<span class="string">&#x27;zs&#x27;</span>,<span class="attr">age</span>:<span class="number">34</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> str=<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(json);</span><br><span class="line"><span class="title function_">alert</span>(str);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-流览器转换为json对象"><a href="#2-4-流览器转换为json对象" class="headerlink" title="2.4 流览器转换为json对象"></a>2.4 流览器转换为json对象</h4><blockquote>
+<p>JSON.parse()</p>
+</blockquote>
+<h3 id="三、Ajax使用【重点】"><a href="#三、Ajax使用【重点】" class="headerlink" title="三、Ajax使用【重点】"></a>三、Ajax使用【<code>重点</code>】</h3><hr>
+<h4 id="3-1-什么是AJAX"><a href="#3-1-什么是AJAX" class="headerlink" title="3.1 什么是AJAX?"></a>3.1 什么是AJAX?</h4><blockquote>
+<ul>
+<li>AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。</li>
+<li>AJAX &#x3D; Asynchronous异步 JavaScript and XML。</li>
+<li>AJAX 是一种用于创建快速动态网页的技术。</li>
+<li>通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</li>
+<li>传统的网页（不使用 AJAX）如果需要更新内容，必需重载整个网页。</li>
+</ul>
+</blockquote>
+<h4 id="3-2-AJAX工作原理"><a href="#3-2-AJAX工作原理" class="headerlink" title="3.2 AJAX工作原理"></a>3.2 AJAX工作原理</h4><table>
+<thead>
+<tr>
+<th align="center">AJAX工作原理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/Pictures/img1.png" alt="img1"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<ul>
+<li><p>AJAX是基于现有的Internet标准，并且联合使用它们：</p>
+</li>
+<li><p>XMLHttpRequest 对象 (异步的与服务器交换数据)</p>
+</li>
+<li><p>JavaScript&#x2F;DOM (信息显示&#x2F;交互)</p>
+</li>
+<li><p>CSS (给数据定义样式)</p>
+</li>
+<li><p>XML (作为转换数据的格式)</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="3-3-AJAX实例"><a href="#3-3-AJAX实例" class="headerlink" title="3.3 AJAX实例"></a>3.3 AJAX实例</h4><blockquote>
+<ul>
+<li><p>html代码，上面的 AJAX 应用程序包含一个 div 和一个按钮。</p>
+</li>
+<li><p>div 部分用于显示来自服务器的信息。当按钮被点击时，它负责调用名为 loadXMLDoc() 的函数：</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;myDiv&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>使用 AJAX 修改该文本内容<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;loadXMLDoc()&quot;</span>&gt;</span>修改内容<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>接下来，在页面的 head 部分添加一个 &lt; script&gt; 标签。该标签中包含了这个 loadXMLDoc() 函数：</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">loadXMLDoc</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="language-javascript">&#123;</span></span><br><span class="line"><span class="language-javascript">    .... <span class="variable constant_">AJAX</span> 脚本执行 ...</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-创建XMLHttpRequest对象"><a href="#3-4-创建XMLHttpRequest对象" class="headerlink" title="3.4 创建XMLHttpRequest对象"></a>3.4 创建XMLHttpRequest对象</h4><blockquote>
+<ul>
+<li><p>XMLHttpRequest对象是AJAX的基础。</p>
+</li>
+<li><p>所有现代浏览器均支持 XMLHttpRequest 对象（IE5 和 IE6 使用 ActiveXObject）。</p>
+</li>
+<li><p>XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</p>
+</li>
+<li><p>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。创建 XMLHttpRequest 对象的语法：</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp=<span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp=<span class="keyword">new</span> <span class="title class_">ActiveXObject</span>(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>为了应对所有的现代浏览器，包括 IE5 和 IE6，请检查浏览器是否支持 XMLHttpRequest 对象。如果支持，则创建 XMLHttpRequest 对象。如果不支持，则创建 ActiveXObject ：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp;</span><br><span class="line"><span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">XMLHttpRequest</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">    xmlhttp=<span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">    xmlhttp=<span class="keyword">new</span> <span class="title class_">ActiveXObject</span>(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5-XMLHttpRequest请求"><a href="#3-5-XMLHttpRequest请求" class="headerlink" title="3.5 XMLHttpRequest请求"></a>3.5 XMLHttpRequest请求</h4><blockquote>
+<p>如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;ajax_info.txt&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">xmlhttp.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>open(<em>method</em>,<em>url</em>,<em>async</em>)</td>
+<td>规定请求的类型、URL 以及是否异步处理请求。<em>method</em>：请求的类型；GET 或 POST；<em>url</em>：文件在服务器上的位置；<em>async</em>：true（异步）或 false（同步），并且XMLHttpRequest 对象如果要用于 AJAX 的话，其 open() 方法的 async 参数必须设置为 true；</td>
+</tr>
+<tr>
+<td>send(<em>string</em>)</td>
+<td>将请求发送到服务器。<em>string</em>：仅用于 POST 请求</td>
+</tr>
+</tbody></table>
+<blockquote>
+<ul>
+<li><p>GET 还是 POST？</p>
+</li>
+<li><p>与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。</p>
+</li>
+<li><p>然而，在以下情况中，请使用 POST 请求：</p>
+<ul>
+<li>无法使用缓存文件（更新服务器上的文件或数据库）</li>
+<li>向服务器发送大量数据（POST 没有数据量限制）</li>
+<li>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>GET 请求</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//示例一：一个简单的 GET 请求：</span></span><br><span class="line">xmlhttp.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;/try/ajax/demo_get.php&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">xmlhttp.<span class="title function_">send</span>();</span><br><span class="line"><span class="comment">//示例二：在上面的例子中，您可能得到的是缓存的结果，为了避免这种情况，请向 URL 添加一个唯一的 ID：</span></span><br><span class="line">xmlhttp.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;/try/ajax/demo_get.php?t=&quot;</span> + <span class="title class_">Math</span>.<span class="title function_">random</span>(),<span class="literal">true</span>);</span><br><span class="line">xmlhttp.<span class="title function_">send</span>();</span><br><span class="line"><span class="comment">//示例三：如果您希望通过 GET 方法发送信息，请向 URL 添加信息：</span></span><br><span class="line">xmlhttp.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;/try/ajax/demo_get2.php?fname=Henry&amp;lname=Ford&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">xmlhttp.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>POST 请求</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//示例一：一个简单 POST 请求</span></span><br><span class="line">xmlhttp.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>,<span class="string">&quot;/try/ajax/demo_post.php&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">xmlhttp.<span class="title function_">send</span>();</span><br><span class="line"><span class="comment">//如果需要像 HTML 表单那样 POST 数据，请使用 setRequestHeader() 来添加 HTTP 头。然后在 send() 方法中规定您希望发送的数据：</span></span><br><span class="line">xmlhttp.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>,<span class="string">&quot;/try/ajax/demo_post2.php&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">xmlhttp.<span class="title function_">setRequestHeader</span>(<span class="string">&quot;Content-type&quot;</span>,<span class="string">&quot;application/x-www-form-urlencoded&quot;</span>);</span><br><span class="line">xmlhttp.<span class="title function_">send</span>(<span class="string">&quot;fname=Henry&amp;lname=Ford&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>setRequestHeader(<em>header,value</em>)</td>
+<td>向请求添加 HTTP 头。<em>header</em>: 规定头的名称    <em>value</em>: 规定头的值</td>
+</tr>
+</tbody></table>
+<blockquote>
+<ul>
+<li><p>对于 web 开发人员来说，发送异步请求是一个巨大的进步。很多在服务器执行的任务都相当费时。AJAX 出现之前，这可能会引起应用程序挂起或停止。</p>
+</li>
+<li><p>通过 AJAX，JavaScript 无需等待服务器的响应，而是：</p>
+<ul>
+<li>在等待服务器响应时执行其他脚本</li>
+<li>当响应就绪后对响应进行处理</li>
+</ul>
+</li>
+<li><p>当使用Async&#x3D;true时，请规定在响应处于 onreadystatechange 事件中的就绪状态时执行的函数：</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//绑定执行函数：</span></span><br><span class="line">xmlhttp.<span class="property">onreadystatechange</span>=<span class="keyword">function</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (xmlhttp.<span class="property">readyState</span>==<span class="number">4</span> &amp;&amp; xmlhttp.<span class="property">status</span>==<span class="number">200</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;myDiv&quot;</span>).<span class="property">innerHTML</span>=xmlhttp.<span class="property">responseText</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;/try/ajax/ajax_info.txt&quot;</span>,<span class="literal">true</span>);</span><br><span class="line">xmlhttp.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li><p>如需使用 async&#x3D;false，请将 open() 方法中的第三个参数改为 false：</p>
+</li>
+<li><p>我们不推荐使用 async&#x3D;false，但是对于一些小型的请求，也是可以的。</p>
+</li>
+<li><p>请记住，JavaScript 会等到服务器响应就绪才继续执行。如果服务器繁忙或缓慢，应用程序会挂起或停止。</p>
+</li>
+<li><p><strong>注意：</strong>当您使用 async&#x3D;false 时，请不要编写 onreadystatechange 函数 - 把代码放到 send() 语句后面即可：</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="3-6-readyState"><a href="#3-6-readyState" class="headerlink" title="3.6 readyState"></a>3.6 readyState</h4><blockquote>
+<ul>
+<li><p>每当 readyState 改变时，就会触发 onreadystatechange 事件。</p>
+</li>
+<li><p>在 onreadystatechange 事件中，我们规定当服务器响应已做好被处理的准备时所执行的任务。</p>
+</li>
+<li><p>readyState 属性存有 XMLHttpRequest 的状态信息。</p>
+</li>
+<li><p>当 readyState 等于 4 且状态为 200 时，表示响应已就绪：</p>
+</li>
+<li><p>下面是 XMLHttpRequest 对象的三个重要的属性：</p>
+</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onreadystatechange</td>
+<td>存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。</td>
+</tr>
+<tr>
+<td>readyState</td>
+<td>存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。0: 请求未初始化1: 服务器连接已建立2: 请求已接收3: 请求处理中4: 请求已完成，且响应已就绪</td>
+</tr>
+<tr>
+<td>status</td>
+<td>例：200: “OK” ；404: 未找到页面</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xmlhttp.<span class="property">onreadystatechange</span>=<span class="keyword">function</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (xmlhttp.<span class="property">readyState</span>==<span class="number">4</span> &amp;&amp; xmlhttp.<span class="property">status</span>==<span class="number">200</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;myDiv&quot;</span>).<span class="property">innerHTML</span>=xmlhttp.<span class="property">responseText</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>响应码</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100</td>
+<td>客户必须继续发出请求</td>
+</tr>
+<tr>
+<td>101</td>
+<td>客户要求服务器根据请求转换HTTP协议版本</td>
+</tr>
+<tr>
+<td>200</td>
+<td>交易成功</td>
+</tr>
+<tr>
+<td>201</td>
+<td>提示知道新文件的URL</td>
+</tr>
+<tr>
+<td>202</td>
+<td>接受和处理、但处理未完成</td>
+</tr>
+<tr>
+<td>203</td>
+<td>返回信息不确定或不完整</td>
+</tr>
+<tr>
+<td>204</td>
+<td>请求收到，但返回信息为空</td>
+</tr>
+<tr>
+<td>205</td>
+<td>服务器完成了请求，用户代理必须复位当前已经浏览过的文件</td>
+</tr>
+<tr>
+<td>206</td>
+<td>服务器已经完成了部分用户的GET请求</td>
+</tr>
+<tr>
+<td>300</td>
+<td>请求的资源可在多处得到</td>
+</tr>
+<tr>
+<td>301</td>
+<td>删除请求数据</td>
+</tr>
+<tr>
+<td>302</td>
+<td>在其他地址发现了请求数据</td>
+</tr>
+<tr>
+<td>303</td>
+<td>建议客户访问其他URL或访问方式</td>
+</tr>
+<tr>
+<td>304</td>
+<td>客户端已经执行了GET，但文件未变化</td>
+</tr>
+<tr>
+<td>305</td>
+<td>请求的资源必须从服务器指定的地址得到</td>
+</tr>
+<tr>
+<td>306</td>
+<td>前一版本HTTP中使用的代码，现行版本中不再使用</td>
+</tr>
+<tr>
+<td>307</td>
+<td>申明请求的资源临时性删除</td>
+</tr>
+<tr>
+<td>400</td>
+<td>错误请求，如语法错误</td>
+</tr>
+<tr>
+<td>401</td>
+<td>请求授权失败</td>
+</tr>
+<tr>
+<td>402</td>
+<td>保留有效ChargeTo头响应</td>
+</tr>
+<tr>
+<td>403</td>
+<td>请求不允许</td>
+</tr>
+<tr>
+<td>404</td>
+<td>没有发现文件、查询或URl</td>
+</tr>
+<tr>
+<td>405</td>
+<td>用户在Request-Line字段定义的方法不允许</td>
+</tr>
+<tr>
+<td>406</td>
+<td>根据用户发送的Accept拖，请求资源不可访问</td>
+</tr>
+<tr>
+<td>407</td>
+<td>类似401，用户必须首先在代理服务器上得到授权</td>
+</tr>
+<tr>
+<td>408</td>
+<td>客户端没有在用户指定的饿时间内完成请求</td>
+</tr>
+<tr>
+<td>409</td>
+<td>对当前资源状态，请求不能完成</td>
+</tr>
+<tr>
+<td>410</td>
+<td>服务器上不再有此资源且无进一步的参考地址</td>
+</tr>
+<tr>
+<td>411</td>
+<td>服务器拒绝用户定义的Content-Length属性请求</td>
+</tr>
+<tr>
+<td>412</td>
+<td>一个或多个请求头字段在当前请求中错误</td>
+</tr>
+<tr>
+<td>413</td>
+<td>请求的资源大于服务器允许的大小</td>
+</tr>
+<tr>
+<td>414</td>
+<td>请求的资源URL长于服务器允许的长度</td>
+</tr>
+<tr>
+<td>415</td>
+<td>请求资源不支持请求项目格式</td>
+</tr>
+<tr>
+<td>416</td>
+<td>请求中包含Range请求头字段，在当前请求资源范围内没有range指示值，请求也不包含If-Range请求头字段</td>
+</tr>
+<tr>
+<td>417</td>
+<td>服务器不满足请求Expect头字段指定的期望值，如果是代理服务器，可能是下一级服务器不能满足请求</td>
+</tr>
+<tr>
+<td>500</td>
+<td>服务器产生内部错误</td>
+</tr>
+<tr>
+<td>501</td>
+<td>服务器不支持请求的函数</td>
+</tr>
+<tr>
+<td>502</td>
+<td>服务器暂时不可用，有时是为了防止发生系统过载</td>
+</tr>
+<tr>
+<td>503</td>
+<td>服务器过载或暂停维修</td>
+</tr>
+<tr>
+<td>504</td>
+<td>关口过载，服务器使用另一个关口或服务来响应用户，等待时间设定值较长</td>
+</tr>
+<tr>
+<td>505</td>
+<td>服务器不支持或拒绝支请求头中指定的HTTP版本</td>
+</tr>
+</tbody></table>
+<h4 id="3-7-XMLHttpRequest响应"><a href="#3-7-XMLHttpRequest响应" class="headerlink" title="3.7 XMLHttpRequest响应"></a>3.7 XMLHttpRequest响应</h4><blockquote>
+<p>如需获得来自服务器的响应，请使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>responseText</td>
+<td>获得字符串形式的响应数据。</td>
+</tr>
+<tr>
+<td>responseXML</td>
+<td>获得 XML 形式的响应数据。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<ul>
+<li>responseText 属性<ul>
+<li>如果来自服务器的响应并非 XML，请使用 responseText 属性。</li>
+<li>responseText 属性返回字符串形式的响应，因此您可以这样使用：</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;myDiv&quot;</span>).<span class="property">innerHTML</span>=xmlhttp.<span class="property">responseText</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>responseXML 属性<ul>
+<li>如果来自服务器的响应是 XML，而且需要作为 XML 对象进行解析，请使用 responseXML 属性：</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">xmlDoc=xmlhttp.<span class="property">responseXML</span>;</span><br><span class="line">txt=<span class="string">&quot;&quot;</span>;</span><br><span class="line">x=xmlDoc.<span class="title function_">getElementsByTagName</span>(<span class="string">&quot;ARTIST&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;x.<span class="property">length</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line">    txt=txt + x[i].<span class="property">childNodes</span>[<span class="number">0</span>].<span class="property">nodeValue</span> + <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;myDiv&quot;</span>).<span class="property">innerHTML</span>=txt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-8-使用回调函数"><a href="#3-8-使用回调函数" class="headerlink" title="3.8 使用回调函数"></a>3.8 使用回调函数</h4><blockquote>
+<ul>
+<li>回调函数是一种以参数形式传递给另一个函数的函数。</li>
+<li>如果您的网站上存在多个 AJAX 任务，那么您应该为创建 XMLHttpRequest 对象编写一个<em>标准</em>的函数，并为每个 AJAX 任务调用该函数。</li>
+<li>该函数调用应该包含 URL 以及发生 onreadystatechange 事件时执行的任务（每次调用可能不尽相同）：</li>
+</ul>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">myFunction</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="title function_">loadXMLDoc</span>(<span class="string">&quot;/try/ajax/ajax_info.txt&quot;</span>,<span class="keyword">function</span>(<span class="params"></span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (xmlhttp.<span class="property">readyState</span>==<span class="number">4</span> &amp;&amp; xmlhttp.<span class="property">status</span>==<span class="number">200</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;myDiv&quot;</span>).<span class="property">innerHTML</span>=xmlhttp.<span class="property">responseText</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="四、AJAX的使用"><a href="#四、AJAX的使用" class="headerlink" title="四、AJAX的使用"></a>四、AJAX的使用</h3><hr>
+<h4 id="4-1-AJAX与服务器交互"><a href="#4-1-AJAX与服务器交互" class="headerlink" title="4.1 AJAX与服务器交互"></a>4.1 AJAX与服务器交互</h4><blockquote>
+<ul>
+<li><p>模拟登陆验证</p>
+</li>
+<li><p>验证用户是否可以注册，利用AJAX技术!进行动态验证</p>
+<ul>
+<li>编写注册页面</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">String path = request.getContextPath();</span><br><span class="line">String basePath = request.getScheme()+&quot;://&quot;+request.getServerName()+&quot;:&quot;+request.getServerPort()+path+&quot;/&quot;;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">HTML</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">&quot;&lt;%=basePath%&gt;&quot;</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>My JSP &#x27;index.jsp&#x27; starting page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;pragma&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no-cache&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;cache-control&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no-cache&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;expires&quot;</span> <span class="attr">content</span>=<span class="string">&quot;0&quot;</span>&gt;</span>    </span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;keywords&quot;</span> <span class="attr">content</span>=<span class="string">&quot;keyword1,keyword2,keyword3&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;description&quot;</span> <span class="attr">content</span>=<span class="string">&quot;This is my page&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;./ajax.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;styles.css&quot;&gt;</span></span><br><span class="line"><span class="comment">	--&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">   		<span class="tag">&lt;<span class="name">center</span>&gt;</span></span><br><span class="line">   			 <span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">&quot;red&quot;</span> <span class="attr">size</span>=<span class="string">&quot;7&quot;</span>&gt;</span>qq注册页面<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line">   			 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">onkeyup</span>=<span class="string">&quot;kp(this)&quot;</span> /&gt;</span> <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;sp&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span>/&gt;</span>	 </span><br><span class="line">   			 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">   			 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;注册&quot;</span>/&gt;</span></span><br><span class="line">   		<span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br><span class="line">   		<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">   			</span></span><br><span class="line"><span class="language-javascript">   			<span class="comment">//当用户名输入框输入内容就调用此方法</span></span></span><br><span class="line"><span class="language-javascript">   			<span class="keyword">function</span> <span class="title function_">kp</span>(<span class="params">ipt</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">   			 </span></span><br><span class="line"><span class="language-javascript">   			 <span class="comment">//1.获取input输入框的value</span></span></span><br><span class="line"><span class="language-javascript">   			   <span class="keyword">var</span> value = ipt.<span class="property">value</span>;</span></span><br><span class="line"><span class="language-javascript">   			 <span class="comment">//2.进行验证</span></span></span><br><span class="line"><span class="language-javascript">   			   <span class="keyword">if</span>(value != <span class="literal">null</span> &amp;&amp; value !=<span class="string">&quot;&quot;</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">   			       	<span class="comment">//1-5</span></span></span><br><span class="line"><span class="language-javascript">   			       	<span class="comment">//1.创建Ajax</span></span></span><br><span class="line"><span class="language-javascript">   			       	<span class="keyword">var</span> xmlhttp = <span class="title function_">getAjax</span>();</span></span><br><span class="line"><span class="language-javascript">   			       	</span></span><br><span class="line"><span class="language-javascript">   			       	<span class="comment">//2.设置状态改变监听</span></span></span><br><span class="line"><span class="language-javascript">   			       	xmlhttp.<span class="property">onreadystatechange</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">   			       		</span></span><br><span class="line"><span class="language-javascript">   			       		<span class="comment">//5获取响应数据</span></span></span><br><span class="line"><span class="language-javascript">   			       		<span class="keyword">if</span>(xmlhttp.<span class="property">readyState</span> == <span class="number">4</span> &amp;&amp; xmlhttp.<span class="property">status</span> ==<span class="number">200</span>)</span></span><br><span class="line"><span class="language-javascript">   			       		&#123;</span></span><br><span class="line"><span class="language-javascript">   			       			</span></span><br><span class="line"><span class="language-javascript">   			       			<span class="keyword">var</span> result = xmlhttp.<span class="property">responseText</span>; <span class="comment">//获取结果</span></span></span><br><span class="line"><span class="language-javascript">   			       			</span></span><br><span class="line"><span class="language-javascript">   			       			<span class="comment">//  1 行    2 不行</span></span></span><br><span class="line"><span class="language-javascript">   			       			</span></span><br><span class="line"><span class="language-javascript">   			       			<span class="comment">//1.找到span标签</span></span></span><br><span class="line"><span class="language-javascript">   			       			</span></span><br><span class="line"><span class="language-javascript">   			       			<span class="keyword">var</span> sp = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;sp&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">   			       			</span></span><br><span class="line"><span class="language-javascript">   			       			<span class="keyword">if</span>(result == <span class="string">&quot;1&quot;</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">   			       				<span class="comment">//成功的 span 提示一句绿色的话		</span></span></span><br><span class="line"><span class="language-javascript">   			       				sp.<span class="property">innerHTML</span>=<span class="string">&quot;&quot;</span>; <span class="comment">//清空</span></span></span><br><span class="line"><span class="language-javascript">   			       			 	<span class="keyword">var</span> ft = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;font&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">   			       				<span class="keyword">var</span> fttext = <span class="variable language_">document</span>.<span class="title function_">createTextNode</span>(<span class="string">&quot;恭喜您!可以注册!!&quot;</span>); <span class="comment">//文本标签</span></span></span><br><span class="line"><span class="language-javascript">   			       				ft.<span class="title function_">setAttribute</span>(<span class="string">&quot;color&quot;</span>, <span class="string">&quot;green&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">   			       				ft.<span class="title function_">appendChild</span>(fttext);</span></span><br><span class="line"><span class="language-javascript">   			       				sp.<span class="title function_">appendChild</span>(ft);  </span></span><br><span class="line"><span class="language-javascript">   			       			&#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="language-javascript">   			       				<span class="comment">//失败的 span 提示一句红色的话</span></span></span><br><span class="line"><span class="language-javascript">   			       				sp.<span class="property">innerText</span>=<span class="string">&quot;用户已经被注册!&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">   			       				sp.<span class="property">style</span>.<span class="property">color</span> = <span class="string">&quot;red&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">   			       			&#125;</span></span><br><span class="line"><span class="language-javascript">   			       		&#125;</span></span><br><span class="line"><span class="language-javascript">   			       	</span></span><br><span class="line"><span class="language-javascript">   			       	&#125;</span></span><br><span class="line"><span class="language-javascript">   			       	<span class="comment">//3.设置ajax method  url</span></span></span><br><span class="line"><span class="language-javascript">   			       	xmlhttp.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">   			       	 <span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/servlet/DealServlet&quot;</span>);			         					<span class="comment">//4.发送请求</span></span></span><br><span class="line"><span class="language-javascript">   			        <span class="comment">//设置一个请求头</span></span></span><br><span class="line"><span class="language-javascript">   			        xmlhttp.<span class="title function_">setRequestHeader</span>(<span class="string">&quot;Content-type&quot;</span>,<span class="string">&quot;application/x-www-form-urlencoded&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">   			        xmlhttp.<span class="title function_">send</span>(<span class="string">&quot;value=&quot;</span>+value);</span></span><br><span class="line"><span class="language-javascript">   			   </span></span><br><span class="line"><span class="language-javascript">   			   &#125;	</span></span><br><span class="line"><span class="language-javascript">   			&#125;</span></span><br><span class="line"><span class="language-javascript">   		</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-编写AJAX处理servlet"><a href="#4-2-编写AJAX处理servlet" class="headerlink" title="4.2 编写AJAX处理servlet"></a>4.2 编写AJAX处理servlet</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DealServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">		<span class="comment">//0.设置编码格式</span></span><br><span class="line">		request.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">	    response.setContentType(<span class="string">&quot;text/html;charset=UTF-8&quot;</span>);</span><br><span class="line">		<span class="comment">//1.</span></span><br><span class="line">	    <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;value&quot;</span>);</span><br><span class="line">		<span class="comment">//2.</span></span><br><span class="line">	    <span class="type">String</span>  <span class="variable">result</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">	    <span class="keyword">if</span> (value.equals(<span class="string">&quot;root&quot;</span>) | value.equals(<span class="string">&quot;admin&quot;</span>)) &#123;</span><br><span class="line">		   result = <span class="string">&quot;2&quot;</span>;</span><br><span class="line">		   <span class="comment">//代表已经存在</span></span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="comment">//可以注册</span></span><br><span class="line">			result = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//3.</span></span><br><span class="line">		response.getWriter().write(result);   </span><br><span class="line">    &#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/" rel="tag">Ajax</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
   id="post-Servlet"
   class="article article-type-post"
   itemscope
@@ -70,9 +919,10 @@
     
     <header class="article-header">
        
-<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  servlet
-</h1>
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/04/24/Servlet/"
+    >servlet</a> 
+</h2>
  
 
       
@@ -85,34 +935,9 @@
   <div class="article-category">
     <a class="article-category-link" href="/categories/Java/">Java</a>
   </div>
-  
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">16.5k</span>
-        </span>
-    </span>
-
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">78 分钟</span>
-        </span>
-    </span>
-</div>
- 
+   
     </div>
       
-    <div class="tocbot"></div>
-
-
-
-
-  
     <div class="article-entry" itemprop="articleBody">
        
   <meta name="referrer" content="no-referrer" />
@@ -1799,113 +2624,36 @@
  
       <!-- reward -->
       
-      <div id="reword-out">
-        <div id="reward-btn">
-          打赏
-        </div>
-      </div>
-      
     </div>
     
 
     <!-- copyright -->
     
-    <div class="declare">
-      <ul class="post-copyright">
-        <li>
-          <i class="ri-copyright-line"></i>
-          <strong>版权声明： </strong>
-          
-          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
-          
-        </li>
-      </ul>
-    </div>
-    
     <footer class="article-footer">
        
-<div class="share-btn">
-      <span class="share-sns share-outer">
-        <i class="ri-share-forward-line"></i>
-        分享
-      </span>
-      <div class="share-wrap">
-        <i class="arrow"></i>
-        <div class="share-icons">
-          
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="ri-weibo-fill"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="ri-wechat-fill"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="ri-qq-fill"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="ri-douban-line"></i>
-          </a>
-          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a> -->
-          
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="ri-facebook-circle-fill"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="ri-twitter-fill"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="ri-google-fill"></i>
-          </a>
-        </div>
-      </div>
-</div>
-
-<div class="wx-share-modal">
-    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://laneng.github.io/2019/04/24/Servlet/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div id="share-mask"></div>  
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/servlet/" rel="tag">servlet</a></li></ul>
 
     </footer>
   </div>
 
    
-  <nav class="article-nav">
-    
-      <a href="/2019/04/24/AJAX/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            ajax
-          
-        </div>
-      </a>
-    
-    
-  </nav>
-
-  
    
   
-   
-    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
-    <div id="twikoo" class="twikoo"></div>
-    <script>
-        twikoo.init({
-            envId: ""
-        })
-    </script>
- 
 </article>
 
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+  
 </section>
+</div>
+
       <footer class="footer">
   <div class="outer">
     <ul>
@@ -2049,22 +2797,6 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
- 
-<script src="/js/tocbot.min.js"></script>
-
-<script>
-  tocbot.init({
-    tocSelector: ".tocbot",
-    contentSelector: ".article-entry",
-    headingSelector: "h1, h2, h3, h4, h5, h6",
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer: "main",
-    positionFixedSelector: ".tocbot",
-    positionFixedClass: "is-position-fixed",
-    fixedSidebarOffset: "auto",
-  });
-</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link
