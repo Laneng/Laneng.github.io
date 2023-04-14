@@ -156,6 +156,91 @@
     
     
     <article
+  id="post-i18n"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/04/14/i18n/"
+    >i18n</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/04/14/i18n/" class="article-date">
+  <time datetime="2023-04-14T01:00:41.765Z" itemprop="datePublished">2023-04-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <meta name="referrer" content="no-referrer" />
+
+
+    <div id="aplayer-OJMQTrKG" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="2121130123" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
+    ></div>
+
+<h1 id="i18n"><a href="#i18n" class="headerlink" title="i18n"></a>i18n</h1><ol>
+<li>在resources下面建立i18n文件夹</li>
+<li>建立各国语言对照的properties文件</li>
+</ol>
+<p><img src="https://gitee.com/lan-xiaodong/myblog/raw/master/img/202304140850005.png" alt="image-20230414085027275"></p>
+<p><img src="https://gitee.com/lan-xiaodong/myblog/raw/master/img/202304140850775.png" alt="image-20230414085052283"></p>
+<ol start="3">
+<li><p>建立一个类实现LocaleResolver 本地化解析器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyLocaleResolver</span> <span class="keyword">implements</span> <span class="title class_">LocaleResolver</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Locale <span class="title function_">resolveLocale</span><span class="params">(HttpServletRequest httpServletRequest)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">l</span> <span class="operator">=</span> httpServletRequest.getParameter(<span class="string">&quot;l&quot;</span>);   <span class="comment">// l 用来接受前端传过来的参数</span></span><br><span class="line">        <span class="type">Locale</span> <span class="variable">locale</span> <span class="operator">=</span> Locale.getDefault();</span><br><span class="line">        <span class="keyword">if</span>(l != <span class="literal">null</span> &amp;&amp; !<span class="string">&quot;&quot;</span>.equals(l))&#123;   <span class="comment">//  由于传过来的为类似zh_CN这种文件,需要将其解析后给到本地组</span></span><br><span class="line">            locale = <span class="keyword">new</span> <span class="title class_">Locale</span>(l.split(<span class="string">&quot;_&quot;</span>)[<span class="number">0</span>], l.split(<span class="string">&quot;_&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> locale;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setLocale</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Locale locale)</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>建立一个配置类,该配置类实现WebMvcConfigurer接口</p>
+<ol>
+<li><p>把本地化解析器注册到容器中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> LocaleResolver <span class="title function_">localeResolver</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MyLocaleResolver</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现接口addViewControllers,该接口用来访问网页资源,由于templates下的资源必须去后端返回,才能找到页面,所以采用该方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addViewControllers</span><span class="params">(ViewControllerRegistry registry)</span> &#123;</span><br><span class="line">     registry.addViewController(<span class="string">&quot;/&quot;</span>).setViewName(<span class="string">&quot;index&quot;</span>);</span><br><span class="line">     registry.addViewController(<span class="string">&quot;/index.html&quot;</span>).setViewName(<span class="string">&quot;index&quot;</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>前端的编写</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-container sign-in-container&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;login&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">h1</span> <span class="attr">th:text</span>=<span class="string">&quot;#&#123;tip&#125;&quot;</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">               </span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;email&quot;</span> <span class="attr">th:placeholder</span>=<span class="string">&quot;#&#123;username&#125;&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">th:placeholder</span>=<span class="string">&quot;#&#123;password&#125;&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">th:text</span>=<span class="string">&quot;#&#123;remember&#125;&quot;</span>&gt;</span>忘记密码<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">th:text</span>=<span class="string">&quot;#&#123;btn&#125;&quot;</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;index.html(l=&#x27;zh_CN&#x27;)&#125;&quot;</span>&gt;</span>中文<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;index.html(l=&#x27;en_US&#x27;)&#125;&quot;</span>&gt;</span>English<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;index.html(l=&#x27;ja_JP&#x27;)&#125;&quot;</span>&gt;</span>日本语<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
   id="post-springMVC"
   class="article article-type-post"
   itemscope
@@ -5909,76 +5994,6 @@
     
     <footer class="article-footer">
        
-    </footer>
-  </div>
-
-   
-   
-  
-</article>
-
-    
-    <article
-  id="post-今日总结"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/19/%E4%BB%8A%E6%97%A5%E6%80%BB%E7%BB%93/"
-    >G1垃圾回收</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/03/19/%E4%BB%8A%E6%97%A5%E6%80%BB%E7%BB%93/" class="article-date">
-  <time datetime="2020-03-18T16:34:14.000Z" itemprop="datePublished">2020-03-19</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">JVM垃圾回收机制</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="面向多CPU的最新垃圾回收器-G1"><a href="#面向多CPU的最新垃圾回收器-G1" class="headerlink" title="面向多CPU的最新垃圾回收器-G1"></a>面向多CPU的最新垃圾回收器-G1</h1><h2 id="G1最大的特征"><a href="#G1最大的特征" class="headerlink" title="G1最大的特征"></a>G1最大的特征</h2><p>将大空间分成若干区域,能实现一些更复杂,更精细的的功能</p>
-<h2 id="划分成小区域的好处"><a href="#划分成小区域的好处" class="headerlink" title="划分成小区域的好处"></a>划分成小区域的好处</h2><ol>
-<li>垃圾回收线程和工作线程能够并行工作,避免”SWT”</li>
-<li>不同区域可同时回收,并发性更高,更适合多核服务器</li>
-<li>可以先回收一部分区域,回收更快</li>
-<li>可以简历停顿预测模型,用户可以设定垃圾回收最长时间</li>
-</ol>
-<h2 id="Region划分原理"><a href="#Region划分原理" class="headerlink" title="Region划分原理"></a>Region划分原理</h2><ol>
-<li>数量方面,region默认总个数为2048个</li>
-<li>大小方面,默认是1MB,可以通过参数将其修改为2,4,8,16,32MB这几种</li>
-</ol>
-<h1 id="第一章总结思考"><a href="#第一章总结思考" class="headerlink" title="第一章总结思考"></a>第一章总结思考</h1><ol>
-<li>每个区域该多大?总数为多少比较好</li>
-<li>新生&#x2F;老年代区域比例该如何才能最优?</li>
-<li>大对象该如何管理</li>
-<li>处理YGC,还有几种类型,如何工作?</li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jvm/" rel="tag">Jvm</a></li></ul>
-
     </footer>
   </div>
 
